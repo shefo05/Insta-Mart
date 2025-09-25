@@ -3,10 +3,9 @@ import { getProductsByBrand } from '_/app/_Services/products.services'
 import { ProductType } from '_/app/_Types/product.type'
 import ProductCard from '_/app/_Components/ProductCard/ProductCard'
 
-type Params = { params: { id: string } }
-
-export default async function BrandProductsPage({ params }: Params) {
-  const products = await getProductsByBrand(params.id)
+export default async function BrandProductsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const products = await getProductsByBrand(id)
 
   if (!products || products.length === 0) {
     return (

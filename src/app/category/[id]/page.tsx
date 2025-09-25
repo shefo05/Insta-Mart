@@ -3,10 +3,9 @@ import { getProductsByCategory } from '_/app/_Services/products.services'
 import { ProductType } from '_/app/_Types/product.type'
 import ProductCard from '_/app/_Components/ProductCard/ProductCard'
 
-type Params = { params: { id: string } }
-
-export default async function CategoryProductsPage({ params }: Params) {
-  const products = await getProductsByCategory(params.id)
+export default async function CategoryProductsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const products = await getProductsByCategory(id)
 
   if (!products || products.length === 0) {
     return (

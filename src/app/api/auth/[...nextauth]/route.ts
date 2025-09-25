@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 //     token:;
 // }
 
-export const nextAuthConfig:NextAuthOptions = {
+const nextAuthConfig: NextAuthOptions = {
   providers: [
     Credentials({
         name:"Insta Mart",
