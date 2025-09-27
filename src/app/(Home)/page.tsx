@@ -14,7 +14,7 @@ export default async function Home() {
 
   if(allProducts == null)
   {
-    return;
+    return null;
   }
 
 

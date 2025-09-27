@@ -1,4 +1,4 @@
 export type ProductDetailsProps ={
-    params:{ id:string }
+    params: Promise<{ id:string }>
 
 }

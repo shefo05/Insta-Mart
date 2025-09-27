@@ -3,10 +3,11 @@ import { getProductsByCategory } from '_/app/_Services/products.services'
 import { ProductType } from '_/app/_Types/product.type'
 import ProductCard from '_/app/_Components/ProductCard/ProductCard'
 
-type Params = { params: { id: string } }
+type Params = { params: Promise<{ id: string }> }
 
 export default async function CategoryProductsPage({ params }: Params) {
-  const products = await getProductsByCategory(params.id)
+  const { id } = await params
+  const products = await getProductsByCategory(id)
 
   if (!products || products.length === 0) {
     return (
@@ -14,7 +15,7 @@ export default async function CategoryProductsPage({ params }: Params) {
         <div className="text-center py-16">
           <i className="fa-solid fa-box-open text-6xl text-gray-400 mx-auto mb-4 block"></i>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-          <p className="text-gray-600">This category doesn't have any products yet.</p>
+          <p className="text-gray-600">This category doesn&apos;t have any products yet.</p>
         </div>
       </div>
     )

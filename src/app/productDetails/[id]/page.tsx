@@ -6,13 +6,11 @@ import Image from 'next/image';
 import AddProductBtn from '_/app/_Components/AddProductBtn/AddProductBtn';
 import AddToWishlistIcn from '_/app/_Components/AddToWishlistIcn/AddToWishlistIcn';
 
-export default async function ProductDetails({params}:ProductDetailsProps) {
-  const data  = await getSpecificProduct(params.id);
+export default async function ProductDetails({ params }: ProductDetailsProps) {
+  const { id } = await params;
+  const data  = await getSpecificProduct(id);
   console.log("productdata", data);
-  if(data == null)
-  {
-    return "nulll";
-  }
+  if (data == null) return null;
   
   return (
     <div className=' xl:grid xl:grid-cols-5 border-2 p-5 w-3/4 mx-auto my-10 flex flex-col items-center'>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { getAllCategories } from '../_Services/category.services/category.services'
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllBrands } from '../_Services/brand.services/brand.services';

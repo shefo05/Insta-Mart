@@ -1,5 +1,4 @@
 'use client'
-import { Button } from '_/components/ui/button'
 import { toast } from 'sonner';
 import { AddToWishlist } from '../addToWishlist/wishlist.services';
 

@@ -1,6 +1,7 @@
 import Credentials from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions, Session, User } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 
 import { jwtDecode } from "jwt-decode";
 
@@ -13,7 +14,7 @@ const nextAuthConfig: NextAuthOptions = {
     Credentials({
         name:"Insta Mart",
 
-        authorize: async function(credentials,req){
+        authorize: async function(credentials){
             const res = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signin",{
                 method:'post'    ,
                 body:JSON.stringify(credentials),
@@ -56,24 +57,34 @@ const nextAuthConfig: NextAuthOptions = {
   pages: { signIn: "/login" },
 
   callbacks: {
-     jwt({ token, user }) {
+    jwt({ token, user }: { token: JWT; user?: User | null }) {
+      type AugmentedUser = User & { credentialsToken?: string; id: string };
+      type AugmentedToken = JWT & { credentialsToken?: string; userId?: string };
+      const nextToken: AugmentedToken = { ...token } as AugmentedToken;
       if (user) {
-        (token as any).credentialsToken = (user as any).credentialsToken;
-        (token as any).userId = (user as any).id;
+        const u = user as AugmentedUser;
+        if (u.credentialsToken) nextToken.credentialsToken = u.credentialsToken;
+        if (u.id) nextToken.userId = u.id;
       }
-      return token;
+      return nextToken as JWT;
     },
-     session({ session, token }) {
-      if (session.user) {
-        (session.user as any).id = (token as any).userId;
+    session({ session, token }: { session: Session; token: JWT }) {
+      type AugmentedToken = JWT & { credentialsToken?: string; userId?: string };
+      type AugmentedSession = Session & { credentialsToken?: string; user?: (Session["user"] & { id?: string }) | null };
+      const t = token as AugmentedToken;
+      const s = session as AugmentedSession;
+      if (s.user && t.userId) {
+        s.user.id = t.userId;
       }
-      (session as any).credentialsToken = (token as any).credentialsToken;
-      return session;
+      if (t.credentialsToken) {
+        s.credentialsToken = t.credentialsToken;
+      }
+      return s as Session;
     },
   },
 }
 
-const handler = NextAuth(nextAuthConfig as any);
+const handler = NextAuth(nextAuthConfig);
 export { handler as GET, handler as POST };
 // import Credentials from "next-auth/providers/credentials";
 // import type { NextAuthOptions } from "next-auth";

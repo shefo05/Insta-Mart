@@ -7,7 +7,7 @@ export async function getAllBrands(): Promise<BrandType[] | null> {
         const finalres = await res.json();
         return (finalres?.data as BrandType[]) || null
 
-    } catch (error) {
+    } catch {
         return null
     }
 

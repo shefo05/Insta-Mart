@@ -6,6 +6,11 @@ export interface CartItem {
     imageCover: string;
     price: number;
     ratingsAverage: number;
+    brand: {
+      _id: string;
+      name: string;
+      slug: string;
+    };
   };
   quantity: number;
   price: number;

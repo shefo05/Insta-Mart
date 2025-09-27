@@ -9,7 +9,7 @@ export async function getAllCategories(): Promise<CategoryType[] | null> {
         const finalres = await res.json();
         return (finalres?.data as CategoryType[]) || null
 
-    } catch (error) {
+    } catch {
         return null
     }
 

@@ -4,6 +4,7 @@ import { Button } from '../../components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
 import Image from 'next/image';
 import { getUserToken } from '../_Utils/utils';
+import { CartResponse, CartItem } from './cart.type';
 
 // user cart data
  /*
@@ -361,7 +362,7 @@ export default async function CartPage() {
   const token = await getUserToken();
   console.log("token", token);
   
-  let cartData: any = null;
+  let cartData: CartResponse | null = null;
   let error: string | null = null;
 
   if (token) {
@@ -415,7 +416,7 @@ export default async function CartPage() {
         <div className="text-center py-16">
           <i className="fa-solid fa-cart-shopping text-6xl text-gray-400 mx-auto mb-4 block"></i>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Your cart is empty</h3>
-          <p className="text-gray-600 mb-6">Looks like you haven't added any items to your cart yet.</p>
+          <p className="text-gray-600 mb-6">Looks like you haven&apos;t added any items to your cart yet.</p>
           <Button>Start Shopping</Button>
         </div>
       </div>
@@ -452,7 +453,7 @@ export default async function CartPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {cartData.data.products.map((item: any) => (
+            {cartData.data.products.map((item: CartItem) => (
               <TableRow key={item._id} className="hover:bg-gray-50">
                 <TableCell>
                   <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center relative overflow-hidden">
@@ -485,7 +486,7 @@ export default async function CartPage() {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <span className="font-semibold text-gray-900">${(item.price / item.count).toFixed(2)}</span>
+                  <span className="font-semibold text-gray-900">${(item.price / item.quantity).toFixed(2)}</span>
                   <div className="text-xs text-gray-500">per item</div>
                 </TableCell>
                 <TableCell>
@@ -494,11 +495,11 @@ export default async function CartPage() {
                       size="sm"
                       variant="outline"
                       className="h-8 w-8 p-0"
-                      disabled={item.count <= 1}
+                      disabled={item.quantity <= 1}
                     >
                       <i className="fa-solid fa-minus text-xs"></i>
                     </Button>
-                    <span className="w-8 text-center font-medium">{item.count}</span>
+                    <span className="w-8 text-center font-medium">{item.quantity}</span>
                     <Button
                       size="sm"
                       variant="outline"

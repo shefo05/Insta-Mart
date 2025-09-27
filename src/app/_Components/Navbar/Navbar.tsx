@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isActive, getLinkClasses } = NavbarUtils();
-  const { data: session, status } = useSession();
+  useSession();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

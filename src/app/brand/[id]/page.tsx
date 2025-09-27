@@ -13,7 +13,7 @@ export default async function BrandProductsPage({ params }: { params: Promise<{ 
         <div className="text-center py-16">
           <i className="fa-solid fa-box-open text-6xl text-gray-400 mx-auto mb-4 block"></i>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-          <p className="text-gray-600">This brand doesn't have any products yet.</p>
+          <p className="text-gray-600">This brand doesn&apos;t have any products yet.</p>
         </div>
       </div>
     )

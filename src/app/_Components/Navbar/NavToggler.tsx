@@ -10,7 +10,7 @@ type NavTogglerProps = {
 
 export default function NavToggler({ status }: NavTogglerProps) {
   const { isActive, getLinkClasses } = NavbarUtils();
-  const { data: session, status: authStatus } = useSession();
+  const { data: session } = useSession();
   // const totalItems = useAppSelector((state) => state.cart.totalItems);
   return (
     <div className={`${status} md:block` } >

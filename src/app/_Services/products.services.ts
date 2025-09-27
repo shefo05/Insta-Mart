@@ -16,7 +16,7 @@ export async function getProducts (limit : string = '40' ,caching: RequestCache 
 
 
 
-    } catch (error) {
+    } catch {
         return null;
     }
 
@@ -30,7 +30,7 @@ export async function getSpecificProduct(id:string) :Promise<ProductType | null>
         // console.log("data", productDetailsData);
         return productDetailsData.data;
 }
-    catch(error){
+    catch{
         return null;
     }
 }
@@ -41,7 +41,7 @@ export async function getProductsByCategory(categoryId: string, caching: Request
         if(!res.ok) return null;
         const data = await res.json();
         return data.data || null;
-    } catch(error) {
+    } catch {
         return null;
     }
 }
@@ -52,7 +52,7 @@ export async function getProductsByBrand(brandId: string, caching: RequestCache 
         if(!res.ok) return null;
         const data = await res.json();
         return data.data || null;
-    } catch(error) {
+    } catch {
         return null;
     }
 }

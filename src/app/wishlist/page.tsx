@@ -1,8 +1,6 @@
 
 
 import { Button } from '../../components/ui/button';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
-import Image from 'next/image';
 import { getUserToken } from '../_Utils/utils';
 import ProductCard from '../_Components/ProductCard/ProductCard';
 import { ProductType } from '../_Types/product.type';
@@ -151,7 +149,13 @@ import { ProductType } from '../_Types/product.type';
 export default async function WishlistPage() {
   const token = await getUserToken();
   
-  let wishlistData: any = null;
+  type WishlistResponse = {
+    status: string;
+    count: number;
+    data: ProductType[];
+  } | null;
+
+  let wishlistData: WishlistResponse = null;
   let error: string | null = null;
 
   if (token) {
@@ -205,7 +209,7 @@ export default async function WishlistPage() {
         <div className="text-center py-16">
           <i className="fa-solid fa-heart text-6xl text-gray-400 mx-auto mb-4 block"></i>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Your wishlist is empty</h3>
-          <p className="text-gray-600 mb-6">Looks like you haven't added any items to your cart yet.</p>
+          <p className="text-gray-600 mb-6">Looks like you haven&apos;t added any items to your cart yet.</p>
           <Button>Start Shopping</Button>
         </div>
       </div>
