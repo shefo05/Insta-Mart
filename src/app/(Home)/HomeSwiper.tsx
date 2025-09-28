@@ -11,16 +11,16 @@ export default function HomeSwiper() {
 
   return (
     <div className="flex flex-col md:flex-row content-center w-3/4 mx-auto  md:my-10">
-          <div className='h[200px] md:h-[250px] lg:h-[300px] xl:h-[400px] md:w-3/4 w-full'>
+          <div className=' h-[200px] md:h-[250px] lg:h-[300px] xl:h-[400px] md:w-3/4 w-full'>
           <MySwiper smallHeight = {200}
             mediumHeight = {250} 
             largeHeight = {300} 
             xlargeHeight = {400} imagesList={ [sliderImg.src, sliderImg2.src, sliderImg3.src] }  />
           </div>
-          <div className=" md:w-1/4 w-full  flex flex-row md:flex-col gap-3 md:ms-3">
+          <div className=" md:w-1/4 w-full my-3 md:my-0 flex  md:flex-col gap-3 md:ms-3">
 
-            <div><Image className="h-[194px]" src={staticImg} alt="InstaMart" /></div>
-            <div><Image className="h-[194px]" src={staticImg2} alt="InstaMart" /></div>
+            <div><Image className="h-[100px] md:h-[194px]" src={staticImg2} alt="InstaMart" /></div>
+            <div><Image className="h-[100px] md:h-[194px]" src={staticImg} alt="InstaMart" /></div>
 
           </div>
 

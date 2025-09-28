@@ -15,7 +15,8 @@ export default async function CategoriesSlider() {
             mediumHeight = {150} 
             largeHeight = {200} 
             xlargeHeight = {200}
-            slidesPerView={8} 
+            smallSlidesPerView={4}
+            largeSlidesPerView={12} 
             spaceBetween={10} 
             imagesList={allCategories.map(category => category.image)}
             captions={allCategories.map(category => category.name)}

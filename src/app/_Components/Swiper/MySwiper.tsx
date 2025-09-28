@@ -13,25 +13,34 @@ import Image from 'next/image';
 
 
 export default function MySwiper(
-  { imagesList, captions, slidesPerView = 1, spaceBetween = 50,  smallHeight = 100, 
+  { imagesList, captions,  spaceBetween = 50,  smallSlidesPerView = 1, largeSlidesPerView = 1, smallHeight = 100, 
     mediumHeight = 150, 
     largeHeight = 200, 
     xlargeHeight = 200  }:
-  { imagesList: string[]; captions?: string[]; slidesPerView?: number; spaceBetween?: number; smallHeight?: number; 
+  { imagesList: string[]; captions?: string[]; slidesPerView?: number; spaceBetween?: number; smallHeight?: number;   
     mediumHeight?: number; 
     largeHeight?: number; 
-    xlargeHeight?: number;  }
+    xlargeHeight?: number; 
+    smallSlidesPerView?: number; 
+    largeSlidesPerView?: number;  }
 ){
 
   const heightClass = `h-[${smallHeight}px] md:h-[${mediumHeight}px] lg:h-[${largeHeight}px] xl:h-[${xlargeHeight}px]`;
 
+  const baseSlidesPerView = smallSlidesPerView ?? largeSlidesPerView ?? 1;
+
+  // const breakpoints: any = {};
+
+  // if (largeSlidesPerView !== undefined && largeSlidesPerView !== 1) { 
+  //   breakpoints[1024] = { slidesPerView: largeSlidesPerView, spaceBetween };
+  // }
   return (
     <div className="mb-2 md:mb-8 ">
     <Swiper
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={spaceBetween}
-      slidesPerView={slidesPerView}
+      slidesPerView={baseSlidesPerView}
       navigation
       // pagination={{ clickable: true }}
       loop={true}
