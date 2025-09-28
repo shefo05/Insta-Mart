@@ -11,7 +11,7 @@ export default function HomeSwiper() {
 
   return (
     <div className="flex flex-col md:flex-row content-center w-3/4 mx-auto  md:my-10">
-          <div className='md:w-3/4 w-full'>
+          <div className='h[200px] md:h-[250px] lg:h-[300px] xl:h-[400px] md:w-3/4 w-full'>
           <MySwiper smallHeight = {200}
             mediumHeight = {250} 
             largeHeight = {300} 
