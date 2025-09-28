@@ -11,7 +11,10 @@ export default async function CategoriesSlider() {
   return (
         <div className="pb-8 pt-2">
         <MySwiper 
-            height={200} 
+            smallHeight = {100}
+            mediumHeight = {150} 
+            largeHeight = {200} 
+            xlargeHeight = {200}
             slidesPerView={8} 
             spaceBetween={10} 
             imagesList={allCategories.map(category => category.image)}

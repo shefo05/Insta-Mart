@@ -53,7 +53,6 @@ const nextAuthConfig: NextAuthOptions = {
   ],
 
   session: { strategy: "jwt" },
-  // Customize sign in page if you have one
   pages: { signIn: "/login" },
 
   callbacks: {

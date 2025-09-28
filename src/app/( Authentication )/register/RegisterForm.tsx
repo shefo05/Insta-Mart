@@ -124,7 +124,7 @@ export default function RegisterForm() {
        )}
        
      />
-     <Button className="mt-16 bg-green-700 cursor-pointer hover:bg-green-900 w-1/8 py-6 text-xl">Register </Button>
+     <Button className="mt-16 bg-green-700 cursor-pointer hover:bg-green-900 md:w-1/8 py-6 text-xl">Register </Button>
 
      </Form>
     </form>

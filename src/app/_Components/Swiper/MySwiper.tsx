@@ -10,12 +10,23 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Image from 'next/image';
 
+
+
 export default function MySwiper(
-  { imagesList, captions, slidesPerView = 1, spaceBetween = 50, height = 400 }:
-  { imagesList: string[]; captions?: string[]; slidesPerView?: number; spaceBetween?: number; height?: number }
+  { imagesList, captions, slidesPerView = 1, spaceBetween = 50,  smallHeight = 100, 
+    mediumHeight = 150, 
+    largeHeight = 200, 
+    xlargeHeight = 200  }:
+  { imagesList: string[]; captions?: string[]; slidesPerView?: number; spaceBetween?: number; smallHeight?: number; 
+    mediumHeight?: number; 
+    largeHeight?: number; 
+    xlargeHeight?: number;  }
 ){
+
+  const heightClass = `h-[${smallHeight}px] md:h-[${mediumHeight}px] lg:h-[${largeHeight}px] xl:h-[${xlargeHeight}px]`;
+
   return (
-    <div className="mb-8">
+    <div className="mb-2 md:mb-8 ">
     <Swiper
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -32,7 +43,8 @@ export default function MySwiper(
     
       {imagesList.map((src, idx) => (
         <SwiperSlide key={src}>
-          <div style={{ height: `${height}px` }} className="relative">
+          <div  className={`relative ${heightClass} `}>
+          {/* <div className="relative h-[100px] md:h-[150px] lg:h[200px]"> */}
             <Image fill className="object-cover" src={src} alt="Insta Mart" />
           </div>
           {captions?.[idx] && (

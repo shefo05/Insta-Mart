@@ -8,12 +8,16 @@ import MySwiper from "../_Components/Swiper/MySwiper"
 import Image from "next/image"
 
 export default function HomeSwiper() {
+
   return (
-    <div className="flex content-center w-3/4 mx-auto my-10">
-          <div className="w-3/4 h-[400px]">
-          <MySwiper imagesList={ [sliderImg.src, sliderImg2.src, sliderImg3.src] }  />
+    <div className="flex flex-col md:flex-row content-center w-3/4 mx-auto  md:my-10">
+          <div className='md:w-3/4 w-full'>
+          <MySwiper smallHeight = {200}
+            mediumHeight = {250} 
+            largeHeight = {300} 
+            xlargeHeight = {400} imagesList={ [sliderImg.src, sliderImg2.src, sliderImg3.src] }  />
           </div>
-          <div className="w-1/4 h-[400px] flex flex-col gap-3 ms-3">
+          <div className=" md:w-1/4 w-full  flex flex-row md:flex-col gap-3 md:ms-3">
 
             <div><Image className="h-[194px]" src={staticImg} alt="InstaMart" /></div>
             <div><Image className="h-[194px]" src={staticImg2} alt="InstaMart" /></div>
